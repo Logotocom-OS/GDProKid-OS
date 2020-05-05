@@ -36,24 +36,26 @@ function display( _sText )
 end
 
 
-if not term.isColor() then
-        print( "Cannot install: You need something other than a standard computer." )
-        print( "This installer is now " )
-        shell.exit()
-end
 
 display( "Installing this OS will make files!" )
 os.sleep(3)
-display( "Install started." )
+display( "Install wizard started." )
+os.sleep(0.01)
 print( "" )
 
 
 tArgs = {...}
  
 if not term.isColor or not term.isColor() then
-        error('GDProKid OS Requires an Advanced (gold) Computer')
+        display( "Could not start setup. GDProKid OS Requires an Advanced (gold) Computer. " )
+        os.sleep(5)
+        term.clear()
+        term.setCursorPos(1,1)
+        print( "GDProKid OS Requires an Advanced (gold) Computer. " )
+        print( "" )
+        os.sleep(0.01)
+        shell.exit
 end
- 
 _jstr = [[
         local base = _G
  
