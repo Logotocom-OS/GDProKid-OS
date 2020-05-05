@@ -179,5 +179,24 @@ function API.setLabelText(ID,label)
     objects[ID]["label"] = label
     API.draw(ID)
 end
-
+function API.setBarColor(ID,color1,color2)
+    local objtype = objects[ID]["type"]
+    if not objtype == "bar" then return end
+    objects[ID]["color1"] = color1
+    objects[ID]["color2"] = color2
+    API.draw(ID)
+end
+function API.setLabelColor(ID,color)
+    local objtype = objects[ID]["type"]
+    if not objtype == "label" then return end
+    objects[ID]["color"] = color
+    API.draw(ID)
+end
+function API.setButtonColor(ID,color1,color2)
+    local objtype = objects[ID]["type"]
+    if not objtype == "button" then return end
+    objects[ID][ "color1" ] = color1
+    objects[ID][ "color2" ] = color2
+    API.draw(ID)
+end
 return API
