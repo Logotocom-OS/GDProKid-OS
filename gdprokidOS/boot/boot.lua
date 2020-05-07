@@ -3,7 +3,7 @@
 os.loadAPI("gdprokidOS/api/gui.lua")
 local function executeFile( _dir , _stype )
 local _type = _stype
-local dir = "/gdprokidOS/startup/start.lua"
+local dir = _dir
 
 local function bootSequence()
   -- Wait for a key event:
@@ -65,4 +65,4 @@ shell.run( dir )
 
 end
 
-executeFile( "gdprokidOS/startup/start" , "Boot" )
+executeFile( "gdprokidOS/startup/start." , "Boot" )
