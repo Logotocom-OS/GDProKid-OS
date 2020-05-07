@@ -1,7 +1,8 @@
 -- --- ----  Boot System v1.x  ---- --- --
 
 os.loadAPI("gdprokidOS/api/gui.lua")
-
+local function executeFile( _dir , _stype )
+local _type = _stype
 local dir = "/gdprokidOS/startup/start.lua"
 
 local function bootSequence()
@@ -14,20 +15,18 @@ local function bootSequence()
     gui.clearAllObjects()
 		
 	elseif key == "keys.F1" or gui.getButtonState( "cancel-button" ) == true then
-    gui.setLabelText( "load-label" , "Canceling boot..." )
+    gui.setLabelText( "load-label" , "Canceling"  .. _type .. "..." )
     os.sleep(1)
     gui.clearAllObjects()
     term.setCursorPos(1,1)
-    print( "Canceled direct boot to" )
+    print( "Canceled direct " .. _type .. " to" )
     print( "/CraftOS" .. dir )
     os.sleep(2)
     term.clear()
     term.setCursorPos(1,1)
-    print( "To boot, type \"reboot\"." )
-    print( "Boot System" )
     shell.exit()
-		break
-	end
+    break
+    end
   gui.updateAll()
 end
 
@@ -35,15 +34,15 @@ local w, h = term.getSize()
 local prog = 100
 local timer = 0
 
-gui.newLabel( "title-1" , "Boot System" , 1 , 1 , w - 8 , 1 , colors.blue )
+gui.newLabel( "title-1" , "Execute System" , 1 , 1 , w - 8 , 1 , colors.blue )
 gui..newButton( "cancel-boot" , "Cancel", w - 8 , 1 , 8 , 1, nil, nil, colors.pimk, colors.red, falsd)
 
-gui.newLabel( "boot-dir-title" , "Boot Directory" , 2 , 3 , w - 2 , 1 , colors.blue )
-gui.newLabel( "boot-dir" , "/CraftOS" .. dir , 2 , 5 , w - 2 , 2 , colors.gray )
+gui.newLabel( "boot-dir-title" , "Execute Directory" , 2 , 3 , w - 2 , 1 , colors.blue )
+gui.newLabel( "boot-dir" , dir , 2 , 5 , w - 2 , 2 , colors.gray )
 gui.newBar( "load-bar" , 1 , h - 2 , w , 1 , colors.lightBlue , colors.blue , 0)
 gui.newLabel( "load-label , "Invalid label" , 1 , h - 3 , w , 1 , colors.blue )
 os.sleep(0.01)
-gui.setLabelText( "load-label" , "Press F1 to cancel. Press enter to boot." )
+gui.setLabelText( "load-label" , "Press F1 to cancel. Press enter to start." )
 
 gui.updateAll()
 timer = 5
@@ -55,11 +54,13 @@ until timer < 0.1
 repeat
   bootSequence()
   gui.setBarValue( "load-bar" , prog )
-  gui.setLabelText( "load-label" , "Booting  OS in " .. prog / 10 .. " seconds..." )
+  gui.setLabelText( "load-label" , "Starting in " .. math.round( prog / 10 ) .. " seconds..." )
   prog = prog - 1
   os.sleep(0.1)
 until prog < 1
 
 gui.clearAllObjects()
 
-shell.run( "/gdprokidOS/startup/start.lua" )
+shell.run( dir )
+
+end
