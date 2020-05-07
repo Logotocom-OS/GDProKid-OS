@@ -41,7 +41,7 @@ gui.newButton( "cancel-boot" , "Cancel", w - 8 , 1 , 8 , 1, nil, nil, colors.pin
 gui.newLabel( "boot-dir-title" , "Boot Directory" , 2 , 3 , w - 2 , 1 , colors.blue )
 gui.newLabel( "boot-dir" , "/CraftOS" .. dir , 2 , 5 , w - 2 , 2 , colors.gray )
 gui.newBar( "load-bar" , 1 , h - 2 , w , 1 , colors.lightBlue , colors.blue , 0)
-gui.newLabel( "load-label , "Loading..." , 1 , h - 3 , w , 1 , colors.blue )
+gui.newLabel( "load-label" , "Loading..." , 1 , h - 3 , w , 1 , colors.blue )
 os.sleep(0.01)
 gui.setLabelText( "load-label" , "Press F1 to cancel. Press enter to boot." )
 
