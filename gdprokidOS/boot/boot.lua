@@ -64,3 +64,5 @@ gui.clearAllObjects()
 shell.run( dir )
 
 end
+
+executeFile( "gdprokidOS/startup/start" , "Boot" )
